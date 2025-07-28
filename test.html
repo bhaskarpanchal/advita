@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Highlight Under Cursor</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 60px;
+      cursor: none;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      color: #111;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #6b3e26;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cursor-inner {
+      width: 30px;
+      height: 30px;
+      background-color: #6b3e26;
+      border-radius: 50%;
+      mix-blend-mode: difference;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor">
+    <div class="cursor-inner"></div>
+  </div>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>1. Integrity First</h2>
+      <p>We believe a strong business is built on trust. We deliver what we promise — on quality, on time, every time.</p>
+    </div>
+    <div class="card">
+      <h2>2. Sustainability Is Non-Negotiable</h2>
+      <p>Every product we trade meets global sustainability standards. We champion organic farming, ethical labor, and environmental responsibility.</p>
+    </div>
+    <div class="card">
+      <h2>3. Relationships Over Transactions</h2>
+      <p>Whether it's a farmer in India or a textile brand in Europe, we invest in longterm relationships that deliver value to both sides.</p>
+    </div>
+  </div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+
+    document.addEventListener('mousemove', e => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
+        ease: 'power2.out'
+      });
+    });
+  </script>
+
+</body>
+</html>
